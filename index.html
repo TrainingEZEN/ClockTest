@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- <body class="light"> -->
+    <div class="clock">
+        <div class="hour">
+            <div class="hr" id="hr"></div>
+        </div>
+        <div class="min">
+            <div class="mn" id="mn"></div>
+        </div>
+        <div class="sec">
+            <div class="sc" id="sc"></div>
+        </div>
+    </div>    
+    <div class="toggleClass" onclick="toggleClass()"></div>
+    <script type="text/javascript">
+        function toggleClass(){
+            const body = document.querySelector('body');
+            body.classList.toggle('light');
+        }
+
+
+        const deg = 6;
+        const hr = document.querySelector('#hr');
+        const mn = document.querySelector('#mn');
+        const sc = document.querySelector('#sc');
+
+        setInterval(() => {
+            
+            let day = new Date();
+            let hh = day.getHours() * 30;
+            let mm = day.getMinutes() * deg;
+            let ss = day.getSeconds() * deg;
+
+            // ' '가 아니라 숫자키 1의 옆에 있는 ` <--이것으로 감싸줘야 함. (한참 헤멨넹...그지 자바)
+            hr.style.transform = `rotateZ(${(hh)+(mm/12)}deg)`;
+            mn.style.transform = `rotateZ(${mm}deg)`;
+            sc.style.transform = `rotateZ(${ss}deg)`;
+
+        })
+        
+    </script>
+</body>
+</html>
